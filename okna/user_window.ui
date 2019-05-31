@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>main_window</class>
+ <widget class="QMainWindow" name="main_window">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Twitter Application</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>72</y>
+      <width>800</width>
+      <height>3</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_mainWindow">
+    <property name="geometry">
+     <rect>
+      <x>25</x>
+      <y>22</y>
+      <width>101</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Strona głowna</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_powiadomienia">
+    <property name="geometry">
+     <rect>
+      <x>135</x>
+      <y>22</y>
+      <width>111</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Powiadomienia</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_tweetnij">
+    <property name="geometry">
+     <rect>
+      <x>675</x>
+      <y>22</y>
+      <width>97</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Tweetnij</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>22</y>
+      <width>201</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Szukaj</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="lista_tweetow">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>72</y>
+      <width>400</width>
+      <height>530</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_follow">
+    <property name="geometry">
+     <rect>
+      <x>625</x>
+      <y>100</y>
+      <width>150</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Obserwuj</string>
+    </property>
+   </widget>
+   <widget class="QGraphicsView" name="profile_picture">
+    <property name="geometry">
+     <rect>
+      <x>25</x>
+      <y>100</y>
+      <width>150</width>
+      <height>150</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="profile_name">
+    <property name="geometry">
+     <rect>
+      <x>25</x>
+      <y>270</y>
+      <width>150</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="html">
+     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Profile name&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="profile_bio">
+    <property name="geometry">
+     <rect>
+      <x>25</x>
+      <y>320</y>
+      <width>150</width>
+      <height>150</height>
+     </rect>
+    </property>
+    <property name="html">
+     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Profile bio&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
