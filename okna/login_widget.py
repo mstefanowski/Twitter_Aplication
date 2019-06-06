@@ -23,6 +23,10 @@ except AttributeError:
         return QtGui.QApplication.translate(context, text, disambig)
 
 class Ui_Logowanie(object):
+
+    def __init__(self, twitter):
+        self.twitter = twitter
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("Logowanie"))
         MainWindow.resize(400, 300)
@@ -45,6 +49,7 @@ class Ui_Logowanie(object):
         self.btn_logIn = QtGui.QPushButton(MainWindow)
         self.btn_logIn.setGeometry(QtCore.QRect(246, 216, 121, 51))
         self.btn_logIn.setObjectName(_fromUtf8("btn_logIn"))
+        self.btn_logIn.clicked.connect(self.login_clicked)
         self.login_label = QtGui.QLabel(MainWindow)
         self.login_label.setGeometry(QtCore.QRect(50, 80, 66, 17))
         self.login_label.setObjectName(_fromUtf8("login_label"))
@@ -61,3 +66,8 @@ class Ui_Logowanie(object):
         self.btn_logIn.setText(_translate("Logowanie", "Zaloguj się", None))
         self.login_label.setText(_translate("Logowanie", "Login", None))
         self.password_label.setText(_translate("Logowanie", "Hasło", None))
+
+    def login_clicked(self):
+        self.twitter.login()
+        print(self.twitter.get_user_data())
+        print(self.twitter.get_latest_tweets())
