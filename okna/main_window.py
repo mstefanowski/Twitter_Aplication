@@ -23,6 +23,9 @@ except AttributeError:
         return QtGui.QApplication.translate(context, text, disambig)
 
 class Ui_main_window(object):
+    def __init__(self, twitter):
+        self.twitter = twitter
+
     def setupUi(self, main_window):
         main_window.setObjectName(_fromUtf8("main_window"))
         main_window.resize(800, 600)
@@ -61,6 +64,8 @@ class Ui_main_window(object):
         self.retranslateUi(main_window)
         QtCore.QMetaObject.connectSlotsByName(main_window)
 
+        self.load_tweets()
+
     def retranslateUi(self, main_window):
         main_window.setWindowTitle(_translate("main_window", "Twitter Application", None))
         self.btn_mainWindow.setText(_translate("main_window", "Strona głowna", None))
@@ -69,3 +74,13 @@ class Ui_main_window(object):
         self.lineEdit.setText(_translate("main_window", "Szukaj", None))
         self.label.setText(_translate("main_window", "Trendy dla Ciebie", None))
 
+    def load_tweets(self):
+        tweets = self.twitter.get_latest_tweets()
+        simplified_tweets = []
+        for x in range(len(tweets)):
+            single_simplified_tweet = {}
+            single_tweet = tweets[x]
+            single_simplified_tweet["imie"] = single_tweet["user"]["name"]
+            single_simplified_tweet["tekst"] = single_tweet["text"]
+            simplified_tweets.append(single_simplified_tweet)
+        print(simplified_tweets)

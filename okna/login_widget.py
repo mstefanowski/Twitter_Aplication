@@ -72,6 +72,4 @@ class Ui_Logowanie(object):
     def login_clicked(self):
         self.loged = True
         self.twitter.login()
-        print(self.twitter.get_user_data())
-        print(self.twitter.get_latest_tweets())
         self.current_window.hide()

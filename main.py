@@ -17,7 +17,7 @@ def run():
 
     if(login_Window.loged):
         window = QtGui.QMainWindow()
-        main_window = Ui_main_window()
+        main_window = Ui_main_window(twitter)
         main_window.setupUi(window)
         window.show()
         sys.exit(app.exec())
