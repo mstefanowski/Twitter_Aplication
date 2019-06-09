@@ -73,16 +73,17 @@ class Ui_user_window(object):
         self.profile_photo.setObjectName(_fromUtf8("profile_picture"))
 
         self.profile_name = QtGui.QTextBrowser(self.centralwidget)
-        self.profile_name.setGeometry(QtCore.QRect(25, 270, 150, 30))
+        self.profile_name.setGeometry(QtCore.QRect(25, 270, 150, 70))
         self.profile_name.setObjectName(_fromUtf8("profile_name"))
 
         self.profile_bio = QtGui.QTextBrowser(self.centralwidget)
-        self.profile_bio.setGeometry(QtCore.QRect(25, 320, 150, 150))
+        self.profile_bio.setGeometry(QtCore.QRect(25, 360, 150, 150))
         self.profile_bio.setObjectName(_fromUtf8("profile_bio"))
 
         self.retranslateUi(parent)
         QtCore.QMetaObject.connectSlotsByName(parent)
         self.get_user_avatar()
+        self.get_info()
 
     def retranslateUi(self, main_window):
         main_window.setWindowTitle(_translate("main_window", "Twitter Application", None))
@@ -91,17 +92,6 @@ class Ui_user_window(object):
         self.btn_tweetnij.setText(_translate("main_window", "Tweetnij", None))
         self.lineEdit.setText(_translate("main_window", "Szukaj", None))
         self.btn_follow.setText(_translate("main_window", "Obserwuj", None))
-        self.profile_name.setHtml(_translate("main_window", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Profile name</p></body></html>", None))
-        self.profile_bio.setHtml(_translate("main_window", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Profile bio</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
 
     def write_tweets(self):
         tweet_dialog = QtGui.QDialog()
@@ -118,3 +108,11 @@ class Ui_user_window(object):
         image.loadFromData(data)
         image = image.scaledToHeight(150)
         self.profile_photo.setPixmap(QtGui.QPixmap(image))
+
+    def get_info(self):
+        user_data = self.twitter.get_user_data()
+        nick = user_data["screen_name"]
+        imie = user_data["name"]
+        bio = user_data["description"]
+        self.profile_name.setPlainText("@"+nick+"\n"+imie)
+        self.profile_bio.setPlainText(bio)
