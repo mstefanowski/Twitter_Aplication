@@ -21,3 +21,10 @@ class Twitter_client:
     def get_latest_tweets(self):
         home_timeline = self.oauth_session.get('https://api.twitter.com/1.1/statuses/home_timeline.json')
         return home_timeline.json()
+
+    def create_a_tweet(self, text):
+        url = 'https://api.twitter.com/1.1/statuses/update.json?status='+text
+        result = self.oauth_session.post(url)
+        resultJson = result.json()
+        print(result)
+        print(resultJson)

@@ -23,6 +23,9 @@ except AttributeError:
         return QtGui.QApplication.translate(context, text, disambig)
 
 class Ui_send_tweet(object):
+    def __init__(self, twitter):
+        self.twitter = twitter
+
     def setupUi(self, Form):
         Form.setObjectName(_fromUtf8("Form"))
         Form.resize(700, 400)
@@ -48,6 +51,7 @@ class Ui_send_tweet(object):
         self.btn_tweetnij = QtGui.QPushButton(Form)
         self.btn_tweetnij.setGeometry(QtCore.QRect(540, 340, 141, 41))
         self.btn_tweetnij.setObjectName(_fromUtf8("btn_tweetnij"))
+        self.btn_tweetnij.clicked.connect(self.createATweet)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -57,3 +61,5 @@ class Ui_send_tweet(object):
         self.tweet_sth.setText(_translate("Form", "Tweetnij coś", None))
         self.btn_tweetnij.setText(_translate("Form", "Tweetnij", None))
 
+    def createATweet(self):
+        self.twitter.create_a_tweet(self.textEdit.toPlainText())

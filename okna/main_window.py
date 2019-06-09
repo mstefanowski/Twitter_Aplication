@@ -111,6 +111,6 @@ class Ui_main_window(object):
 
     def write_tweets(self):
         tweet_dialog = QtGui.QDialog()
-        tweet_window = Ui_send_tweet()
+        tweet_window = Ui_send_tweet(self.twitter)
         tweet_window.setupUi(tweet_dialog)
         tweet_dialog.exec()
