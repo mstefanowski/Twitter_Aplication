@@ -92,9 +92,9 @@ class Ui_main_window(object):
             single_simplified_tweet = {}
             single_tweet = tweets[x]
             single_simplified_tweet["imie"] = single_tweet["user"]["name"]
+            single_simplified_tweet["avatar"] = single_tweet["user"]["profile_image_url"]
             single_simplified_tweet["tekst"] = single_tweet["text"]
             simplified_tweets.append(single_simplified_tweet)
-        print(simplified_tweets)
         self.set_tweets(simplified_tweets)
 
     def set_tweets(self, simplified_tweets):
