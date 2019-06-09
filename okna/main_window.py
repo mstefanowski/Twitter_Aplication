@@ -10,6 +10,7 @@ from PyQt4 import QtCore, QtGui
 
 from okna.single_tweet import SingleTweetWidget
 from okna.tweet_widget import Ui_send_tweet
+from okna.user_window import Ui_user_window
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -47,9 +48,10 @@ class Ui_main_window(object):
         self.btn_mainWindow.setGeometry(QtCore.QRect(25, 22, 101, 30))
         self.btn_mainWindow.setObjectName(_fromUtf8("btn_mainWindow"))
 
-        self.btn_powiadomienia = QtGui.QPushButton(self.centralwidget)
-        self.btn_powiadomienia.setGeometry(QtCore.QRect(135, 22, 111, 30))
-        self.btn_powiadomienia.setObjectName(_fromUtf8("btn_powiadomienia"))
+        self.btn_profil= QtGui.QPushButton(self.centralwidget)
+        self.btn_profil.setGeometry(QtCore.QRect(135, 22, 111, 30))
+        self.btn_profil.setObjectName(_fromUtf8("btn_profil"))
+        self.btn_profil.clicked.connect(self.open_profile)
 
         self.btn_tweetnij = QtGui.QPushButton(self.centralwidget)
         self.btn_tweetnij.setGeometry(QtCore.QRect(675, 22, 97, 30))
@@ -82,7 +84,7 @@ class Ui_main_window(object):
     def retranslateUi(self, main_window):
         main_window.setWindowTitle(_translate("main_window", "Twitter Application", None))
         self.btn_mainWindow.setText(_translate("main_window", "Strona głowna", None))
-        self.btn_powiadomienia.setText(_translate("main_window", "Powiadomienia", None))
+        self.btn_profil.setText(_translate("main_window", "Profil", None))
         self.btn_tweetnij.setText(_translate("main_window", "Tweetnij", None))
         self.lineEdit.setText(_translate("main_window", "Szukaj", None))
         self.label.setText(_translate("main_window", "Trendy dla Ciebie", None))
@@ -114,3 +116,9 @@ class Ui_main_window(object):
         tweet_window = Ui_send_tweet(self.twitter)
         tweet_window.setupUi(tweet_dialog)
         tweet_dialog.exec()
+
+    def open_profile(self):
+        profile_dialog = QtGui.QDialog()
+        profile_window = Ui_user_window(self.twitter)
+        profile_window.setupUi(profile_dialog)
+        profile_dialog.exec()
