@@ -9,6 +9,7 @@
 from PyQt4 import QtCore, QtGui
 
 from okna.single_tweet import SingleTweetWidget
+from okna.tweet_widget import Ui_send_tweet
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -53,6 +54,7 @@ class Ui_main_window(object):
         self.btn_tweetnij = QtGui.QPushButton(self.centralwidget)
         self.btn_tweetnij.setGeometry(QtCore.QRect(675, 22, 97, 30))
         self.btn_tweetnij.setObjectName(_fromUtf8("btn_tweetnij"))
+        self.btn_tweetnij.clicked.connect(self.write_tweets)
 
         self.lineEdit = QtGui.QLineEdit(self.centralwidget)
         self.lineEdit.setGeometry(QtCore.QRect(450, 22, 201, 30))
@@ -107,3 +109,8 @@ class Ui_main_window(object):
             self.lista_tweetow.addItem(q_list_widget_item)
             self.lista_tweetow.setItemWidget(q_list_widget_item, singleTweetWidget)
 
+    def write_tweets(self):
+        tweet_dialog = QtGui.QDialog()
+        tweet_window = Ui_send_tweet()
+        tweet_window.setupUi(tweet_dialog)
+        tweet_dialog.exec()
