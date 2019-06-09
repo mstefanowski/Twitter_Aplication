@@ -5,6 +5,7 @@
 # Created by: PyQt4 UI code generator 4.12.1
 #
 # WARNING! All changes made in this file will be lost!
+import urllib.request
 
 from PyQt4 import QtCore, QtGui
 
@@ -47,8 +48,8 @@ class Ui_send_tweet(object):
         self.textEdit.setGeometry(QtCore.QRect(100, 80, 581, 251))
         self.textEdit.setObjectName(_fromUtf8("textEdit"))
 
-        self.user_photo = QtGui.QFrame(parent)
-        self.user_photo.setGeometry(QtCore.QRect(20, 80, 61, 61))
+        self.user_photo = QtGui.QLabel(parent)
+        self.user_photo.setGeometry(QtCore.QRect(20, 80, 48, 48))
         self.user_photo.setFrameShape(QtGui.QFrame.StyledPanel)
         self.user_photo.setFrameShadow(QtGui.QFrame.Raised)
         self.user_photo.setObjectName(_fromUtf8("user_photo"))
@@ -63,6 +64,8 @@ class Ui_send_tweet(object):
         self.retranslateUi(parent)
         QtCore.QMetaObject.connectSlotsByName(parent)
 
+        self.get_user_avatar()
+
     def retranslateUi(self, Form):
         Form.setWindowTitle(_translate("Form", "Tweetnij coś", None))
         self.tweet_sth.setText(_translate("Form", "Tweetnij coś", None))
@@ -71,3 +74,11 @@ class Ui_send_tweet(object):
     def createATweet(self):
         self.twitter.create_a_tweet(self.textEdit.toPlainText())
         self.parent.hide()
+
+    def get_user_avatar(self):
+        user_data = self.twitter.get_user_data()
+        avatar = user_data["profile_image_url"]
+        data = urllib.request.urlopen(avatar).read()
+        image = QtGui.QImage()
+        image.loadFromData(data)
+        self.user_photo.setPixmap(QtGui.QPixmap(image))

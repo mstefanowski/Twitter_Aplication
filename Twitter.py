@@ -16,10 +16,14 @@ class Twitter_client:
 
     def get_user_data(self):
         user_data = self.oauth_session.get('https://api.twitter.com/1.1/account/verify_credentials.json')
+        print(user_data)
+        print(user_data.json())
         return user_data.json()
 
     def get_latest_tweets(self):
         home_timeline = self.oauth_session.get('https://api.twitter.com/1.1/statuses/home_timeline.json')
+        print(home_timeline)
+        print(home_timeline.json())
         return home_timeline.json()
 
     def create_a_tweet(self, text):
