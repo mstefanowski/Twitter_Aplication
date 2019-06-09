@@ -5,8 +5,11 @@
 # Created by: PyQt4 UI code generator 4.12.1
 #
 # WARNING! All changes made in this file will be lost!
+import urllib.request
 
 from PyQt4 import QtCore, QtGui
+
+from okna.tweet_widget import Ui_send_tweet
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -51,6 +54,7 @@ class Ui_user_window(object):
         self.btn_tweetnij = QtGui.QPushButton(self.centralwidget)
         self.btn_tweetnij.setGeometry(QtCore.QRect(675, 22, 97, 30))
         self.btn_tweetnij.setObjectName(_fromUtf8("btn_tweetnij"))
+        self.btn_tweetnij.clicked.connect(self.write_tweets)
 
         self.lineEdit = QtGui.QLineEdit(self.centralwidget)
         self.lineEdit.setGeometry(QtCore.QRect(450, 22, 201, 30))
@@ -64,9 +68,9 @@ class Ui_user_window(object):
         self.btn_follow.setGeometry(QtCore.QRect(625, 100, 150, 50))
         self.btn_follow.setObjectName(_fromUtf8("btn_follow"))
 
-        self.profile_picture = QtGui.QGraphicsView(self.centralwidget)
-        self.profile_picture.setGeometry(QtCore.QRect(25, 100, 150, 150))
-        self.profile_picture.setObjectName(_fromUtf8("profile_picture"))
+        self.profile_photo = QtGui.QLabel(self.centralwidget)
+        self.profile_photo.setGeometry(QtCore.QRect(25, 100, 150, 150))
+        self.profile_photo.setObjectName(_fromUtf8("profile_picture"))
 
         self.profile_name = QtGui.QTextBrowser(self.centralwidget)
         self.profile_name.setGeometry(QtCore.QRect(25, 270, 150, 30))
@@ -78,6 +82,7 @@ class Ui_user_window(object):
 
         self.retranslateUi(parent)
         QtCore.QMetaObject.connectSlotsByName(parent)
+        self.get_user_avatar()
 
     def retranslateUi(self, main_window):
         main_window.setWindowTitle(_translate("main_window", "Twitter Application", None))
@@ -98,3 +103,18 @@ class Ui_user_window(object):
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Profile bio</p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
 
+    def write_tweets(self):
+        tweet_dialog = QtGui.QDialog()
+        tweet_window = Ui_send_tweet(self.twitter)
+        tweet_window.setupUi(tweet_dialog)
+        tweet_dialog.exec()
+
+    def get_user_avatar(self):
+        user_data = self.twitter.get_user_data()
+        avatar = user_data["profile_image_url"]
+        avatar = avatar.replace("_normal", '')
+        data = urllib.request.urlopen(avatar).read()
+        image = QtGui.QImage()
+        image.loadFromData(data)
+        image = image.scaledToHeight(150)
+        self.profile_photo.setPixmap(QtGui.QPixmap(image))
